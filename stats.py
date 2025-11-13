@@ -1,5 +1,5 @@
 def get_word_count(text):
-    return len(text.split())
+    return f"Found {len(text.split())} total words"
 
 
 def get_letter_count(text):
@@ -13,9 +13,16 @@ def get_letter_count(text):
     return letter_count_dict
 
 
-def sort_dict_to_list(dict):
+def dict_to_list(import_dict):
     list_to_be_sorted = []
-    for key, value in dict:
-        list_to_be_sorted += {"char": key, "num": value}
-    return sorted(list_to_be_sorted, key=lambda x: x['num'])
+    for key, value in import_dict.items():
+        if key.isalpha():
+            new_dict = {"char": key, "value": value}
+            list_to_be_sorted.append(new_dict)
+        continue
+    return sorted(list_to_be_sorted, key=lambda x: x['value'], reverse=True)
 
+
+def print_cleanly(list_data):
+    for i in list_data:
+        print(f"{i["char"]}: {i["value"]}")
